@@ -5,7 +5,11 @@
  */
 package view;
 
+import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,7 +26,8 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-    }
+       
+            }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,6 +38,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup2 = new javax.swing.ButtonGroup();
         inputLogin = new javax.swing.JTextField();
         inputCpf = new javax.swing.JTextField();
         botaoSalvar = new javax.swing.JButton();
@@ -115,6 +121,17 @@ public class Principal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(botaoRemoverLinha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoAdicionarLinha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoAtualizar))))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(inputLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
@@ -122,16 +139,6 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botaoSalvar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoRemoverLinha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoAdicionarLinha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoAtualizar))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,13 +149,13 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoSalvar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAtualizar)
                     .addComponent(botaoAdicionarLinha)
                     .addComponent(botaoRemoverLinha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(168, 168, 168)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
 
@@ -192,17 +199,34 @@ public class Principal extends javax.swing.JFrame {
         }       
         else{
             DefaultTableModel dtm = (DefaultTableModel) tableUsuarios.getModel();
-            dtm.addRow(new String[] {cpf, login} );
+            String a [] = new String[] {cpf, login};
+            dtm.addRow( a );
         }
+        identificarElementoSelecionado();
+        
+//        identificarElementosCheckboxPainel1();
+        
+
+
          
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
+//    public void identificarElementosCheckboxPainel1()
+//    {
+//         Component[] components = jPanel1.getComponents();
+//            for ( Component c : components ) {
+//              JCheckBox cb = (JCheckBox)c;
+//              if (cb.isSelected())
+//                System.out.println("With " + cb.getText());
+//            }
+//    }
+    
     private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
         // TODO add your handling code here:
         int row = tableUsuarios.rowAtPoint(evt.getPoint());//get mouse-selected row
         int col = tableUsuarios.columnAtPoint(evt.getPoint());//get mouse-selected col
 
-       // JOptionPane.showMessageDialog(this, "Linha e coluna selecionada: " + row + " - "+col);
+       JOptionPane.showMessageDialog(this, "Linha e coluna selecionada: " + row + " - "+col);
     }//GEN-LAST:event_tableUsuariosMouseClicked
 
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
@@ -223,7 +247,7 @@ public class Principal extends javax.swing.JFrame {
     private void botaoAdicionarLinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarLinhaActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) tableUsuarios.getModel();
-       dtm.addRow(new String [] {"CPF", "Login" });
+       dtm.addRow(new String [] {"", "" });
               
     }//GEN-LAST:event_botaoAdicionarLinhaActionPerformed
 
@@ -248,6 +272,19 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_botaoRemoverLinhaActionPerformed
 
+    
+    public void identificarElementoSelecionado(){
+        
+                 for (Enumeration<AbstractButton> buttons = buttonGroup2.getElements(); buttons.hasMoreElements();) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                System.out.println(button.getText());
+                break;
+            }
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -288,6 +325,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton botaoAtualizar;
     private javax.swing.JButton botaoRemoverLinha;
     private javax.swing.JButton botaoSalvar;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTextField inputCpf;
     private javax.swing.JTextField inputLogin;
     private javax.swing.JScrollPane jScrollPane1;

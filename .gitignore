@@ -1,3 +1,5 @@
 *.class
 /JavaDesktop/nbproject/private/
 /JavaDesktop/build/
+/JavaJPA/nbproject/private/
+/JavaJPA/build/
