@@ -6,35 +6,45 @@
 package cefet.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Herbert
  */
 @Entity
-public class Usuario implements Serializable {
+public class Publicacao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;    
-    private String nome;
-            
-    public String getNome() {
-        return nome;
+    private Long id;
+    
+    private String textoPublicado;
+    
+    @ManyToOne
+    private Usuario donoPublicacao;
+
+    public String getTextoPublicado() {
+        return textoPublicado;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTextoPublicado(String textoPublicado) {
+        this.textoPublicado = textoPublicado;
     }
-    
-    
 
+    public Usuario getDonoPublicacao() {
+        return donoPublicacao;
+    }
+
+    public void setDonoPublicacao(Usuario donoPublicacao) {
+        this.donoPublicacao = donoPublicacao;
+    }
+
+    
     public Long getId() {
         return id;
     }
@@ -53,10 +63,10 @@ public class Usuario implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
+        if (!(object instanceof Publicacao)) {
             return false;
         }
-        Usuario other = (Usuario) object;
+        Publicacao other = (Publicacao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -65,7 +75,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Usuario[ id=" + id + " ]";
+        return "cefet.model.Publicacao[ id=" + id + " ]";
     }
     
 }
