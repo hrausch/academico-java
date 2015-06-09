@@ -91,6 +91,10 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
+    /**
+     * SELECT * FROM USUARIO
+     * @return 
+     */
     public List<Usuario> findUsuarioEntities() {
         return findUsuarioEntities(true, -1, -1);
     }
@@ -124,6 +128,9 @@ public class UsuarioJpaController implements Serializable {
         }
     }
     
+    /**
+     * SELECT * FROM usuario where nome = ?
+     */
     public List<Usuario> findUsuariosByNome(String nome){
         
         EntityManager em = getEntityManager();
@@ -142,13 +149,12 @@ public class UsuarioJpaController implements Serializable {
         
        //adiciona as condicoes
         cq.where(cb.equal(usu.get("nome"), cb.parameter(String.class, "parametro_nome")));
-        cq.where(cb.and(cb.greaterThan(usu.get("id"), cb.parameter(String.class, "parametro_id"))));
+        
 
         // realiza a passagem de parametro
         TypedQuery q = em.createQuery(cq);
         q.setParameter("parametro_nome", nome);
-        q.setParameter("parametro_id", 20);
-
+        
         return q.getResultList();
         
     }

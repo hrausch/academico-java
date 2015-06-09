@@ -7,11 +7,9 @@ package cefet.view;
 
 import cefet.controller.PublicacaoJpaController;
 import cefet.controller.UsuarioJpaController;
-import cefet.controller.exceptions.NonexistentEntityException;
 import cefet.model.Publicacao;
 import cefet.model.Usuario;
 import cefet.persistence.PersistenceSingleton;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
@@ -54,16 +52,10 @@ public class JavaJPA {
         PublicacaoJpaController pubController = new PublicacaoJpaController(ponte);
         
 //        Usuario u1 = new Usuario(); //instancia um novo objeto
-//        u1.setNome("Herbert");               
-//        usuController.create(u1); // Insere o objeto u1 no banco de dados. O metodo create ja atribui o valor do id no objeto
-//        
-//        u1 = new Usuario(); //instancia um novo objeto
-//        u1.setNome("Rausch");               
-//        usuController.create(u1); 
-//        
-//        u1 = new Usuario(); //instancia um novo objeto
-//        u1.setNome("Fernandes");               
-//        usuController.create(u1);
+//        u1.setNome("Herbert");
+//        u1.setId(14L);
+////       usuController.create(u1); // Insere o objeto u1 no banco de dados. O metodo create ja atribui o valor do id no objeto
+//      
 //        
 //        Publicacao p1 = new Publicacao();
 //        p1.setDonoPublicacao(u1);
@@ -72,30 +64,33 @@ public class JavaJPA {
         
         
         /*Busca publicacao de ID igual 1 */
-        Publicacao p2 = pubController.findPublicacao(1L);
-        System.out.println("Texto: " + p2.getTextoPublicado());
-        System.out.println("Usuario dono: " + p2.getDonoPublicacao().getNome());
-        p2.setTextoPublicado("Texto alterado para teste");
-        pubController.edit(p2);
-        
-        
-        /*Busca usuario de ID igual a 16*/
-        Usuario u2 = usuController.findUsuario(16L);
-        
-        /*Busca por todas as publicacoes no banco de dados*/
+//        Publicacao p2 = pubController.findPublicacao(3L);
+//        System.out.println("Texto: " + p2.getTextoPublicado());
+//        System.out.println("Usuario dono: " + p2.getDonoPublicacao().getNome());
+//        p2.setTextoPublicado("Texto alterado para teste");
+//        pubController.edit(p2);
+//        
+//        
+//        pubController.destroy(4L);
+////      
+//        
+//        
+//        /*Busca usuario de ID igual a 16*/
+//        Usuario u2 = usuController.findUsuario(16L);
+//        
+//        /*Busca por todas as publicacoes no banco de dados*/
         List<Publicacao> listaPublicacoes = pubController.findPublicacaoEntities();
         
-        for( Publicacao objPub : listaPublicacoes ){
-            System.out.println("Texto: " + objPub.getTextoPublicado());
-            System.out.println("Usuario dono: " + objPub.getDonoPublicacao().getNome());
-            
-        }
-        
+//        for( Publicacao objPub : listaPublicacoes ){
+//            System.out.println("Texto: " + objPub.getTextoPublicado());
+//            System.out.println("Usuario dono: " + objPub.getDonoPublicacao().getNome());
+//            
+//        }
+//        
         List<Usuario> lista = usuController.findUsuariosByNome("HERBERT");
         
         for( Usuario objUsu : lista ){
-            System.out.println(objUsu.toString());
-            
+            System.out.println(objUsu.toString());            
         }
         
                 

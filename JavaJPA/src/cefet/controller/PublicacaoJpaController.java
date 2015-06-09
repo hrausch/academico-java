@@ -89,6 +89,9 @@ public class PublicacaoJpaController implements Serializable {
         }
     }
 
+    /*
+    SELECT * FROM PUBLICACAO
+    */
     public List<Publicacao> findPublicacaoEntities() {
         return findPublicacaoEntities(true, -1, -1);
     }
