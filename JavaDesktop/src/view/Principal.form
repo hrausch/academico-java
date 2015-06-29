@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
     </Component>
@@ -127,9 +127,9 @@
               </Table>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableUsuariosMouseClicked"/>
-          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="CellEditorListener evento = new CellEditorListener() {&#xa;        public void editingCanceled(ChangeEvent e) {&#xa;            System.out.println(&quot;Cancelou edicao&quot;);&#xa;        }&#xa;&#xa;        public void editingStopped(ChangeEvent e) {&#xa;            System.out.println(&quot;Finalizou edicao&quot;);&#xa;        }&#xa;    };&#xa;tableUsuarios.getDefaultEditor(String.class).addCellEditorListener(evento);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

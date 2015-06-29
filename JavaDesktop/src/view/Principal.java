@@ -11,6 +11,9 @@ import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -87,11 +90,16 @@ public class Principal extends javax.swing.JFrame {
                 "CPF", "Login"
             }
         ));
-        tableUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableUsuariosMouseClicked(evt);
+        CellEditorListener evento = new CellEditorListener() {
+            public void editingCanceled(ChangeEvent e) {
+                System.out.println("Cancelou edicao");
             }
-        });
+
+            public void editingStopped(ChangeEvent e) {
+                System.out.println("Finalizou edicao");
+            }
+        };
+        tableUsuarios.getDefaultEditor(String.class).addCellEditorListener(evento);
         jScrollPane1.setViewportView(tableUsuarios);
 
         botaoAtualizar.setText("Atualizar");
@@ -221,14 +229,11 @@ public class Principal extends javax.swing.JFrame {
 //            }
 //    }
     
-    private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
-        // TODO add your handling code here:
-        int row = tableUsuarios.rowAtPoint(evt.getPoint());//get mouse-selected row
-        int col = tableUsuarios.columnAtPoint(evt.getPoint());//get mouse-selected col
-
-       JOptionPane.showMessageDialog(this, "Linha e coluna selecionada: " + row + " - "+col);
-    }//GEN-LAST:event_tableUsuariosMouseClicked
-
+   
+     private void atualizarValoresAlterados(ListSelectionEvent evt){
+         System.out.println("Aha");
+     }
+                    
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) tableUsuarios.getModel();
