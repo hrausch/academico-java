@@ -9,8 +9,11 @@ import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ListSelectionEvent;
@@ -21,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Herbert
  */
 public class Principal extends javax.swing.JFrame {
-    
+
     ArrayList<String> usuarios = new ArrayList<>();
 
     /**
@@ -29,8 +32,8 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-       
-            }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +44,8 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonSexo = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         inputLogin = new javax.swing.JTextField();
         inputCpf = new javax.swing.JTextField();
         botaoSalvar = new javax.swing.JButton();
@@ -50,6 +54,8 @@ public class Principal extends javax.swing.JFrame {
         botaoAtualizar = new javax.swing.JButton();
         botaoAdicionarLinha = new javax.swing.JButton();
         botaoRemoverLinha = new javax.swing.JButton();
+        jRadioMasculino = new javax.swing.JRadioButton();
+        jRadioMulher = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,14 +95,22 @@ public class Principal extends javax.swing.JFrame {
             new String [] {
                 "CPF", "Login"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         CellEditorListener evento = new CellEditorListener() {
             public void editingCanceled(ChangeEvent e) {
-                System.out.println("Cancelou edicao");
+
             }
 
             public void editingStopped(ChangeEvent e) {
-                System.out.println("Finalizou edicao");
+                salvarLinha();
             }
         };
         tableUsuarios.getDefaultEditor(String.class).addCellEditorListener(evento);
@@ -124,6 +138,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        buttonSexo.add(jRadioMasculino);
+        jRadioMasculino.setText("Masculino");
+
+        buttonSexo.add(jRadioMulher);
+        jRadioMulher.setText("Feminino");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,11 +161,17 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(botaoAtualizar))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(143, 143, 143)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(inputLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
-                    .addComponent(inputCpf))
-                .addGap(18, 18, 18)
-                .addComponent(botaoSalvar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioMasculino)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioMulher))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inputLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                            .addComponent(inputCpf))
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoSalvar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -161,7 +187,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botaoAtualizar)
                     .addComponent(botaoAdicionarLinha)
-                    .addComponent(botaoRemoverLinha))
+                    .addComponent(botaoRemoverLinha)
+                    .addComponent(jRadioMasculino)
+                    .addComponent(jRadioMulher))
                 .addGap(168, 168, 168)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
@@ -182,105 +210,89 @@ public class Principal extends javax.swing.JFrame {
 
     private void inputCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputCpfFocusLost
         // TODO add your handling code here:
-        if(inputCpf.getText().equals(""))
+        if (inputCpf.getText().equals("")) {
             inputCpf.setText("CPF");
-            
+        }
+
     }//GEN-LAST:event_inputCpfFocusLost
 
     private void inputLoginFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputLoginFocusLost
         // TODO add your handling code here:
-        if(inputLogin.getText().equals(""))
+        if (inputLogin.getText().equals("")) {
             inputLogin.setText("Login");
+        }
     }//GEN-LAST:event_inputLoginFocusLost
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
         // TODO add your handling code here:
-        String cpf, login;
-        
+        String cpf, login, sexo;
+
         cpf = inputCpf.getText();
         login = inputLogin.getText();
-        
-        if( cpf.equals("") || login.equals("") ){
-            
+
+        if (cpf.equals("") || login.equals("")) {
+
             JOptionPane.showMessageDialog(this, "Campo CPF e Login são de preenchimento obrigatório!");
-            
-        }       
-        else{
+
+        } else {
             DefaultTableModel dtm = (DefaultTableModel) tableUsuarios.getModel();
-            String a [] = new String[] {cpf, login};
-            dtm.addRow( a );
+            String a[] = new String[]{cpf, login};
+            dtm.addRow(a);
         }
-        identificarElementoSelecionado();
-        
-//        identificarElementosCheckboxPainel1();
-        
+
+        identificarElementoSelecionado(buttonSexo);
 
 
-         
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
-//    public void identificarElementosCheckboxPainel1()
-//    {
-//         Component[] components = jPanel1.getComponents();
-//            for ( Component c : components ) {
-//              JCheckBox cb = (JCheckBox)c;
-//              if (cb.isSelected())
-//                System.out.println("With " + cb.getText());
-//            }
-//    }
-    
-   
-     private void atualizarValoresAlterados(ListSelectionEvent evt){
-         System.out.println("Aha");
-     }
-                    
+    private void atualizarValoresAlterados(ListSelectionEvent evt) {
+        System.out.println("Aha");
+    }
+
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) tableUsuarios.getModel();
         int numRows = dtm.getRowCount();
-        
-        for(int i = 0; i < numRows; i++){
+
+        for (int i = 0; i < numRows; i++) {
             String cpf = dtm.getValueAt(i, 0).toString();
             String login = dtm.getValueAt(i, 1).toString();
-            
-            dtm.setValueAt(login+"-atualizado", i, 1);
-            
-             JOptionPane.showMessageDialog(this, "CPF e Login:\n" + cpf + " - "+login);
+
+            dtm.setValueAt(login + "-atualizado", i, 1);
+
+            JOptionPane.showMessageDialog(this, "CPF e Login:\n" + cpf + " - " + login);
         }
     }//GEN-LAST:event_botaoAtualizarActionPerformed
 
     private void botaoAdicionarLinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarLinhaActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) tableUsuarios.getModel();
-       dtm.addRow(new String [] {"", "" });
-              
+        dtm.addRow(new String[]{"", ""});
+
     }//GEN-LAST:event_botaoAdicionarLinhaActionPerformed
 
     private void botaoRemoverLinhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRemoverLinhaActionPerformed
         // TODO add your handling code here:
         DefaultTableModel dtm = (DefaultTableModel) tableUsuarios.getModel();
-        
-       
-            int rowSelected = tableUsuarios.getSelectedRow();
-            
-            if(rowSelected == -1){
-                JOptionPane.showMessageDialog(this, "Selecione a linha que quer remover antes de clicar no botão!");
+
+        int rowSelected = tableUsuarios.getSelectedRow();
+
+        if (rowSelected == -1) {
+            JOptionPane.showMessageDialog(this, "Selecione a linha que quer remover antes de clicar no botão!");
+        } else {
+            int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja remover a linha selecionada?", "Confime a sua operação", JOptionPane.YES_NO_OPTION);
+
+            if (opcao == JOptionPane.YES_OPTION) {
+                dtm.removeRow(rowSelected);
             }
-            else{
-                int opcao = JOptionPane.showConfirmDialog(this, "Tem certeza que deseja remover a linha selecionada?","Confime a sua operação", JOptionPane.YES_NO_OPTION);
-               
-                if(opcao == JOptionPane.YES_OPTION)
-                    dtm.removeRow(rowSelected);
-            }
-       
-        
-        
+        }
+
+
     }//GEN-LAST:event_botaoRemoverLinhaActionPerformed
 
-    
-    public void identificarElementoSelecionado(){
-        
-                 for (Enumeration<AbstractButton> buttons = buttonGroup2.getElements(); buttons.hasMoreElements();) {
+    public void identificarElementoSelecionado(ButtonGroup btnGrp) {
+
+        for (Enumeration<AbstractButton> buttons = btnGrp.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
 
             if (button.isSelected()) {
@@ -288,8 +300,13 @@ public class Principal extends javax.swing.JFrame {
                 break;
             }
         }
-        
+
     }
+
+    public void salvarLinha() {
+        System.out.println("SALVAR");
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -330,9 +347,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton botaoAtualizar;
     private javax.swing.JButton botaoRemoverLinha;
     private javax.swing.JButton botaoSalvar;
-    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonSexo;
     private javax.swing.JTextField inputCpf;
     private javax.swing.JTextField inputLogin;
+    private javax.swing.JRadioButton jRadioMasculino;
+    private javax.swing.JRadioButton jRadioMulher;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableUsuarios;
     // End of variables declaration//GEN-END:variables

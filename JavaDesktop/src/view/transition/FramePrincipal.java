@@ -90,7 +90,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         panelBody.setLayout(panelBodyLayout);
         panelBodyLayout.setHorizontalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 702, Short.MAX_VALUE)
         );
         panelBodyLayout.setVerticalGroup(
             panelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +131,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         
         //adiciona ao topo a tela que deseja exibir
         panelBody.add(tela1,BorderLayout.NORTH);
-        
+                
         //redefine a tela principal
         panelBody.revalidate();
         panelBody.repaint();

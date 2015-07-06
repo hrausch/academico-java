@@ -34,6 +34,8 @@ public class Tela3 extends javax.swing.JFrame {
         labelImagem1 = new javax.swing.JLabel();
         botaoCarregar = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         labelTela.setText("Novo Frame");
 
         botaoCarregar.setText("Buscar Imagem");

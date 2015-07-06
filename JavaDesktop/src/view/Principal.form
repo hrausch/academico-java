@@ -2,7 +2,9 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    <Component class="javax.swing.ButtonGroup" name="buttonSexo">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -41,14 +43,23 @@
                   </Group>
               </Group>
           </Group>
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="inputLogin" pref="463" max="32767" attributes="0"/>
-                  <Component id="inputCpf" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="jRadioMasculino" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jRadioMulher" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="inputLogin" pref="463" max="32767" attributes="0"/>
+                          <Component id="inputCpf" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="botaoSalvar" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="botaoSalvar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -68,6 +79,8 @@
                   <Component id="botaoAtualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botaoAdicionarLinha" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botaoRemoverLinha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRadioMasculino" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRadioMulher" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="216" max="-2" attributes="0"/>
@@ -114,7 +127,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="3">
-                <Column editable="true" title="CPF" type="java.lang.Object">
+                <Column editable="false" title="CPF" type="java.lang.Object">
                   <Data value="1"/>
                   <Data value="2"/>
                   <Data value="3"/>
@@ -128,7 +141,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="CellEditorListener evento = new CellEditorListener() {&#xa;        public void editingCanceled(ChangeEvent e) {&#xa;            System.out.println(&quot;Cancelou edicao&quot;);&#xa;        }&#xa;&#xa;        public void editingStopped(ChangeEvent e) {&#xa;            System.out.println(&quot;Finalizou edicao&quot;);&#xa;        }&#xa;    };&#xa;tableUsuarios.getDefaultEditor(String.class).addCellEditorListener(evento);"/>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="CellEditorListener evento = new CellEditorListener() {&#xa;        public void editingCanceled(ChangeEvent e) {&#xa;            &#xa;        }&#xa;&#xa;        public void editingStopped(ChangeEvent e) {&#xa;            salvarLinha();&#xa;        }&#xa;    };&#xa;tableUsuarios.getDefaultEditor(String.class).addCellEditorListener(evento);"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -157,6 +170,22 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoRemoverLinhaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioMasculino">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonSexo"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Masculino"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="jRadioMulher">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonSexo"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Feminino"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
