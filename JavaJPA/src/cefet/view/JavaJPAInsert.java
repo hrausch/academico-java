@@ -27,14 +27,13 @@ public class JavaJPAInsert {
         Usuario u1 = new Usuario(); //instancia um novo objeto
         u1.setNome("Herbert");
         usuController.create(u1); // Insere o objeto u1 no banco de dados. O metodo create ja atribui o valor do id no objeto
-      
         
         Publicacao p1 = new Publicacao();
         p1.setDonoPublicacao(u1);
         p1.setTextoPublicado("Publicacao do usuario:  "+u1.getId());
         pubController.create(p1);
-        
-        
+//        
+//        
 
         
                 
