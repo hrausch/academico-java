@@ -7,12 +7,15 @@ package cefet.controller;
 
 import cefet.controller.exceptions.NonexistentEntityException;
 import cefet.model.Publicacao;
+import cefet.model.Usuario;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -90,8 +93,8 @@ public class PublicacaoJpaController implements Serializable {
     }
 
     /*
-    SELECT * FROM PUBLICACAO
-    */
+     SELECT * FROM PUBLICACAO
+     */
     public List<Publicacao> findPublicacaoEntities() {
         return findPublicacaoEntities(true, -1, -1);
     }
@@ -137,5 +140,52 @@ public class PublicacaoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    /**
+     * USANDO JPA CRITERIA SELECT * FROM publicacao p JOIN usuario u on
+     * u.idUsuario=p.idUsuario where p.idUsuario = ?
+     */
+    public List<Publicacao> findPublicacaoEntitiesByUsuario1(Usuario u) {
+
+        EntityManager em = getEntityManager();
+        
+        // Fabrica de definicoes de consulta
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+
+        // estrutura de consulta
+        CriteriaQuery<Publicacao> query = cb.createQuery(Publicacao.class);
+        Root<Publicacao> from = query.from(Publicacao.class);
+        
+        TypedQuery<Publicacao> typedQuery = em.createQuery(
+                query.select(from)
+                .where(
+                        cb.equal(from.join("donoPublicacao").get("id"), u.getId())
+                )
+        );
+        
+        List<Publicacao> results = typedQuery.getResultList();
+
+        return results;
+
+    }
+    /**
+     * 
+     * USANDO JPQL SELECT * FROM publicacao p JOIN usuario u on
+     * u.idUsuario=p.idUsuario where p.idUsuario = ? 
+     */
+        public List<Publicacao> findPublicacaoEntitiesByUsuario2(Usuario u) {
+
+            EntityManager em = getEntityManager();
+        TypedQuery<Publicacao> typedQuery = em.createQuery(
+                                "SELECT p FROM Publicacao p WHERE p.donoPublicacao.id=:usuario", Publicacao.class);
+        
+        typedQuery.setParameter("usuario", u.getId());
+
+        List<Publicacao> results = typedQuery.getResultList();
+        
+        return results;
+
+    }
+        
+
 }
