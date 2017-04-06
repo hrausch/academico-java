@@ -1,5 +1,5 @@
 /*
-Primeiro programa JAVA
+Primeiro programa JAVA da Lidia
 */
 public class ProgramaJava1{
 
