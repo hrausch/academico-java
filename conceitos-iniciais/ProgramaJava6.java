@@ -44,7 +44,7 @@ public class ProgramaJava6{
 			
 		}
 		
-		System.out.println("\n** O ano digitado foi: " + ano + " ** A sua idade eh: " + (2015-ano) );
+		System.out.println("\n** O ano digitado foi: " + ano + " ** A sua idade eh: " + (2020-ano) );
 	}
 
 
