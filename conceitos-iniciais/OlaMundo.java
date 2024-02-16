@@ -1,7 +1,7 @@
 /*
 Primeiro programa JAVA 
 */
-public class Aula1{
+public class OlaMundo{
 
 	public static void main(String [] args){
 	
