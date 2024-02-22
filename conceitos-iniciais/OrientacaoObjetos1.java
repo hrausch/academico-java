@@ -1,4 +1,4 @@
-public class ProgramaJava4{
+public class OrientacaoObjetos1{
 	
 	public static void main(String [] args){
 	

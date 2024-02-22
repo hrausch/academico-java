@@ -1,5 +1,5 @@
 /*Testando*/
-public class ProgramaJava2{
+public class EntradaDados1{
 
 	public static void main(String [] args){
 	

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ProgramaJava6{
+public class Metodo1{
 
 	public void lerNome(){
 	

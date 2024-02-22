@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ProgramaJava5{
+public class EntradaDados2{
 
 
 	public static void main(String [] args){
