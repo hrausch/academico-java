@@ -24,8 +24,8 @@ public class Fibonacci {
         
         for (int i = 2; i <= n; i++) {
             fib = fib_1 + fib_2;
-            fib_2 = fib_1;
             fib_1 = fib;
+            fib_2 = fib_1;
         }
         
         return fib;
