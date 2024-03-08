@@ -12,6 +12,7 @@ public class Palindromo {
         for (int i = 0; i < palavra.length() / 2; i++) {
             
             if (palavra.charAt(i) != palavra.charAt(palavra.length() - i)) {
+                //correcao : palavra.charAt(palavra.length() - i - 1)
                 palindromo = false;
                 break;
             }

@@ -20,6 +20,7 @@ public class SomaNumerosPares {
         for (int i = inicio; i <= fim; i++) {
 
             if (i / 2 == 0) { 
+                //correcao: i%2==0
                 soma += i; 
             }        
         }
