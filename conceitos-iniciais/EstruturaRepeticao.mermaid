@@ -1,0 +1,29 @@
+---
+config:
+  layout: dagre
+---
+%% flowchart TD
+%%     A["Início"] --> B["counter = 1"]
+%%     B --> C{"counter &lt;= 10?"}
+%%     C -- Não --> D["Fim"]
+%%     C -- Sim --> E["Imprime contador"]
+%%     E --> F["counter + 1"]
+%%     F --> C
+
+flowchart TD
+    A[Start] --> B[Print 'Digite o primeiro número']
+    B --> C[/Ler numero1/]
+    C --> D[Print 'Digite o segundo número'] 
+    D --> E[/Ler numero2/]
+    E --> F{numero1 < numero2?}
+    F -->|Yes| G[menor = numero1
+    maior = numero2]
+    F -->|No| H[menor = numero2
+    maior = numero1]
+    G --> I[numeroAtual = menor]
+    H --> I
+    I --> J{numeroAtual <= maior?}
+    J -->|Yes| K[Print numeroAtual]
+    K --> L[Increment numeroAtual]
+    L --> J
+    J -->|No| M[End]
